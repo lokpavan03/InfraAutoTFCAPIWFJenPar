@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         TOKEN = credentials('TFAPITOKENAD')
+    }
     //Active Choice Parameters these values are input to the terraform.auto.tfvars
     parameters {
         string defaultValue: 'VM001-Jenkins', description: 'Please provide the VM Name', name: 'VirtualMachineName'
