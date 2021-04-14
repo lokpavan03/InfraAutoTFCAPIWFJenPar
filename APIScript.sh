@@ -37,7 +37,8 @@ UPLOAD_URL=($(curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @create_config_version.json \
-  https://app.terraform.io/api/v2/workspaces/$WORKSPACE_ID/configuration-versions | jq -r '.data.attributes."upload-url"'))
+  https://app.terraform.io/api/v2/workspaces/$WORKSPACE_ID/configuration-versions \
+  | jq -r '.data.attributes."upload-url"'))
 
 # 5. Upload the Configuration Content File
 
