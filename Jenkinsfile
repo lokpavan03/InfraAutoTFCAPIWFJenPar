@@ -28,7 +28,7 @@ pipeline {
         //Initializing Terrraform
         stage('Terraform init') {
             steps {
-                chmod +x ./APIScript.sh
+                sh 'chmod +x ./APIScript.sh'
                 sh './APIScript.sh . lok/TestDemo'
             }
         }                  
