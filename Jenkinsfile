@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        TOKEN_API = credentials('TFAPITOKENAD')
+        TOKEN = credentials('TFAPITOKENAD')
     }
     //Active Choice Parameters these values are input to the terraform.auto.tfvars
     parameters {
