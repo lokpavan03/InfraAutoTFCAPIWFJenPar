@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo TOKEN.substring(0, TOKEN.size() - 1) 
                 sh 'chmod +x ./APIScript.sh'
-                sh 'sudo ./APIScript.sh ./ loktf/TestDemo'
+                sh './APIScript.sh ./ loktf/TestDemo'
             }
         }                  
                     
