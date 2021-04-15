@@ -17,22 +17,19 @@ pipeline {
             }
         }
         //createing the terraform.auto.tfvars file from the choices parameters input
-        stage('TFvarsFile') {
+        stage('Creating File') {
             steps {
                 writeFile file: 'terraform.auto.tfvars', text:  """resource_group_name = "${params.RescourceGroupName}" \nresource_group_location = "${params.ResourceGroupLoaction}"\nvnet_name = "${params.VirtualNetworkName}"\nsubnet_name = "${params.SubNetName}"\nazure_virtual_machine_name = "${params.VirtualMachineName}"\nadmin_vm_username = "${params.VMUserName}"\nadmin_vm_password = "${params.VMPassword}"\n"""
             }
         }      
-        //Initializing Terrraform
-        stage('Terraform init') {
+        //API hit the Terrraform cloud with CURL and retreiving Terraform API Token from the Azure Key Vault
+        stage('API Workflow') {
             options{
                 azureKeyVault(credentialID: 'AzureSP', keyVaultURL: 'https://jenkinstf.vault.azure.net/', secrets: [[envVariable: 'Token', name: 'TFAPITOKENAD', secretType: 'Secret']])
             }
             steps {
                 sh 'chmod +x ./APIScript.sh'
                 sh './APIScript.sh ./ lok/TestDemo'
-            }
-            environment {
-                TOKEN = credentials('TFAPITOKENAD')
             }
         }                  
                     
