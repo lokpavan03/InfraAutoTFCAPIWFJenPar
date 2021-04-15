@@ -29,7 +29,7 @@ pipeline {
         stage('Terraform init') {
             steps {
                 sh 'chmod +x ./APIScript.sh'
-                sh './APIScript.sh ./ loktf/TestDemo'
+                sh './APIScript.sh ./ lok/TestDemo'
             }
             environment {
                 TOKEN = credentials('TFAPITOKENAD')
