@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        TOKEN = credentials('TFAPITOKENAD')
+        TOKEN_API = credentials('TFAPITOKENAD')
     }
     //Active Choice Parameters these values are input to the terraform.auto.tfvars
     parameters {
@@ -28,7 +28,7 @@ pipeline {
         //Initializing Terrraform
         stage('Terraform init') {
             steps {
-                sh "export TOKEN=TOKEN.substring(0, TOKEN.size() - 1)"
+                sh 'sudo export TOKEN=$TOKEN_API'
                 sh 'chmod +x ./APIScript.sh'
                 sh './APIScript.sh ./ loktf/TestDemo'
             }
