@@ -28,7 +28,7 @@ pipeline {
         //Initializing Terrraform
         stage('Terraform init') {
             steps {
-                sh 'sudo export TOKEN=$TOKEN_API'
+                sh 'export TOKEN=$TOKEN_API'
                 sh 'chmod +x ./APIScript.sh'
                 sh './APIScript.sh ./ loktf/TestDemo'
             }
