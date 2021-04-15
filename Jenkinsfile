@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        Token = credentials('TFAPITOKENAD')
-    }
     //Active Choice Parameters these values are input to the terraform.auto.tfvars
     parameters {
         string defaultValue: 'VM001-Jenkins', description: 'Please provide the VM Name', name: 'VirtualMachineName'
@@ -27,6 +24,9 @@ pipeline {
         }      
         //Initializing Terrraform
         stage('Terraform init') {
+            options{
+                azureKeyVault(credentialID: 'AzureSP', keyVaultURL: 'https://jenkinstf.vault.azure.net/', secrets: [[envVariable: 'Token', name: 'TFAPITOKENAD', secretType: 'Secret']])
+            }
             steps {
                 sh 'chmod +x ./APIScript.sh'
                 sh './APIScript.sh ./ lok/TestDemo'
