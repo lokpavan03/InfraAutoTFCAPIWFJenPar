@@ -28,7 +28,7 @@ pipeline {
         //Initializing Terrraform
         stage('Terraform init') {
             steps {
-                sh 'export TOKEN=TOKEN.substring(0, TOKEN.size() - 1)'
+                sh 'export TOKEN=(TOKEN.substring(0, TOKEN.size() - 1)'
                 sh 'chmod +x ./APIScript.sh'
                 sh './APIScript.sh ./ loktf/TestDemo'
             }
