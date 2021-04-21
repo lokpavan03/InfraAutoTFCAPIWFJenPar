@@ -29,7 +29,7 @@ pipeline {
             }
             steps {
                 sh 'chmod +x ./APIScript.sh'
-                sh './APIScript.sh ./ lok/TestDemo123'
+                sh './APIScript.sh ./ lok/TestDemo'
             }
         }                  
                     
